@@ -1,0 +1,12 @@
+.venv/
+venv/
+
+datawarehouse/
+
+__pycache__/
+*.pyc
+.coverage
+
+.env
+
+etl_pipeline.log

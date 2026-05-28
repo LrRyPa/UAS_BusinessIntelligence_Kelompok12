@@ -1,0 +1,371 @@
+/* =============================================================
+   reports.css — ToySight BI Report Page
+   Loaded after app.css. Uses existing CSS vars from app.css.
+   Does NOT redefine .content, .sidebar, .card, .btn, .table,
+   .kpi-* — those already exist in app.css.
+   ============================================================= */
+
+/* ── Page wrapper: two-column inside .content ─────────────── */
+.rp-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+/* ── Report-type sidebar panel ────────────────────────────── */
+.rp-sidebar {
+    position: sticky;
+    top: 20px;
+    background: var(--card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    /* Keep below app sidebar which is z-index:50 */
+    z-index: 1;
+}
+
+.rp-sidebar-head {
+    padding: 12px 14px 8px;
+    border-bottom: 1px solid var(--border-soft);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Nav items */
+.rp-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.rp-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 14px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: background .14s, border-color .14s;
+    user-select: none;
+    text-decoration: none;  /* when used as <a> tag */
+    color: inherit;
+}
+
+.rp-nav-item:hover {
+    background: var(--bg-soft);
+}
+
+.rp-nav-item.is-active {
+    background: rgba(34, 211, 238, .07);
+    border-left-color: var(--accent);
+}
+
+.rp-nav-item.is-active .rp-nav-icon {
+    background: rgba(34, 211, 238, .13);
+    color: var(--accent);
+}
+
+.rp-nav-item.is-active .rp-nav-title {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.rp-nav-icon {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--bg-soft);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .14s, color .14s;
+}
+
+.rp-nav-title {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.25;
+}
+
+/* Date filter block at bottom of sidebar */
+.rp-sidebar-filter {
+    padding: 12px 14px 14px;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rp-filter-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.rp-filter-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--text-muted);
+}
+
+.rp-filter-input {
+    width: 100%;
+    height: 34px;
+    padding: 0 8px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-soft);
+    color: var(--text);
+    font-size: 12px;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.rp-filter-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(34,211,238,.12);
+}
+
+/* ── Right column ─────────────────────────────────────────── */
+.rp-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;       /* prevent grid blowout */
+    overflow: hidden;   /* contain inner scroll containers */
+}
+
+/* ── Chart card ───────────────────────────────────────────── */
+.rp-chart-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-sm);
+    padding: 20px 22px 16px;
+}
+
+.rp-chart-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.rp-chart-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 2px;
+}
+
+.rp-chart-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.rp-chart-legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.rp-legend-dot {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.rp-legend-dot i {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ApexCharts fills this div */
+#rp-chart {
+    min-height: 230px;
+}
+
+/* ── Result card (header + table) ─────────────────────────── */
+.rp-result-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+}
+
+.rp-result-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid var(--border-soft);
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.rp-result-eyebrow {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.rp-result-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: -.2px;
+}
+
+.rp-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+/* ── Table: scrollable with sticky thead ──────────────────── */
+.rp-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 520px;
+}
+
+.rp-table-wrap .table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+/* Rank badge */
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    background: var(--bg-soft);
+    color: var(--text-muted);
+}
+
+.rank-badge.rk-1 { background: rgba(245,158,11,.15); color: #B45309; }
+.rank-badge.rk-2 { background: rgba(100,116,139,.15); color: #475569; }
+.rank-badge.rk-3 { background: rgba(180,83,9,.13);   color: #92400E; }
+
+/* Tabular figures for numeric cells */
+.table .num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+}
+
+/* Revenue — deep blue */
+.td-revenue,
+.td-revenue strong {
+    color: #1D4ED8;
+    font-weight: 600;
+}
+
+/* Profit — green */
+.td-profit {
+    color: var(--success);
+    font-weight: 600;
+}
+
+/* Margin pill */
+.margin-pill {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+.margin-pill.mg-high { background: rgba(16,185,129,.12); color: #059669; }
+.margin-pill.mg-mid  { background: rgba(245,158,11,.12); color: #D97706; }
+.margin-pill.mg-low  { background: rgba(239,68,68,.12);  color: #DC2626; }
+
+/* ── Table footer ─────────────────────────────────────────── */
+.rp-result-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 20px;
+    border-top: 1px solid var(--border-soft);
+    background: var(--bg-soft);
+    font-size: 11.5px;
+    color: var(--text-muted);
+}
+
+/* ── Empty state ──────────────────────────────────────────── */
+.rp-empty {
+    padding: 56px 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.rp-empty svg {
+    opacity: .2;
+    display: block;
+    margin: 0 auto 12px;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .rp-layout {
+        grid-template-columns: 1fr;
+    }
+    .rp-sidebar {
+        position: static;
+    }
+    .rp-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .rp-nav-item {
+        flex: 1 1 auto;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+    .rp-nav-item.is-active {
+        border-bottom-color: var(--accent);
+        border-left-color: transparent;
+    }
+}
+
+@media (max-width: 640px) {
+    .rp-result-head { flex-direction: column; align-items: flex-start; }
+    .rp-actions { width: 100%; }
+    .rp-actions .btn { flex: 1; justify-content: center; }
+}

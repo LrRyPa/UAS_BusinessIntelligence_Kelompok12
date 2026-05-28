@@ -1,0 +1,10 @@
+{
+  "files": [
+    "calendar.csv",
+    "inventory.csv",
+    "products.csv",
+    "sales.csv",
+    "stores.csv"
+  ],
+  "updated_at": "2026-05-27T13:07:07.597754+00:00"
+}

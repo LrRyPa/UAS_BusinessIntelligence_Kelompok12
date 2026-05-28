@@ -1,0 +1,153 @@
+/* ToySight - Print Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@page { size: A4; margin: 14mm 12mm; }
+
+* { box-sizing: border-box; }
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: #1F2937;
+    background: #fff;
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+.print-actions {
+    background: #F4F7FB;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    border-bottom: 1px solid #E5EAF1;
+}
+.print-actions button {
+    background: #1E3A5F;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+}
+.print-actions button:hover { background: #2C5282; }
+.print-actions .btn-cancel { background: #E5EAF1; color: #1F2937; }
+
+.print-page {
+    max-width: 880px;
+    margin: 24px auto;
+    padding: 32px 40px;
+    background: #fff;
+}
+
+.print-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 16px;
+    border-bottom: 3px solid #1E3A5F;
+    margin-bottom: 24px;
+}
+.print-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.pb-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1E3A5F;
+    letter-spacing: -.5px;
+}
+.pb-sub {
+    font-size: 10.5px;
+    color: #22D3EE;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    font-weight: 700;
+}
+.print-meta {
+    text-align: right;
+    font-size: 11px;
+    color: #64748B;
+}
+.print-meta div { margin-bottom: 3px; }
+.print-meta strong { color: #1F2937; }
+
+.print-kpis {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.pk {
+    border: 1.5px solid #E5EAF1;
+    border-radius: 8px;
+    padding: 12px 14px;
+    text-align: left;
+}
+.pk span {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #64748B;
+    font-weight: 700;
+}
+.pk strong {
+    display: block;
+    font-size: 18px;
+    margin-top: 4px;
+    color: #1E3A5F;
+}
+
+.print-section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1E3A5F;
+    margin: 0 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #E5EAF1;
+}
+
+.print-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+    margin-bottom: 18px;
+}
+.print-table thead th {
+    background: #1E3A5F;
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+.print-table thead th.num { text-align: right; }
+.print-table tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #EEF2F7;
+}
+.print-table tbody td.num { text-align: right; }
+.print-table tbody tr:nth-child(even) { background: #F8FAFC; }
+
+.print-foot {
+    margin-top: 28px;
+    padding-top: 12px;
+    border-top: 1px solid #E5EAF1;
+    text-align: center;
+    font-size: 10px;
+    color: #94A3B8;
+}
+
+@media print {
+    .print-actions { display: none !important; }
+    body { background: #fff; font-size: 10.5px; }
+    .print-page { margin: 0; padding: 0; }
+    .print-table thead th { background: #1E3A5F !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .pk strong { color: #1E3A5F !important; }
+}
